@@ -1,0 +1,5 @@
+[
+  { "_id": { "$oid": "68345f2fc6074b0a31f4c598" }, "name": "Apple", "color": "Red", "sweetness": 7 },
+  { "_id": { "$oid": "68345f2fc6074b0a31f4c599" }, "name": "Banana", "color": "Yellow", "sweetness": 10 },
+  { "_id": { "$oid": "68345f2fc6074b0a31f4c59a" }, "name": "Grape", "color": "Purple", "sweetness": 6 }
+]
