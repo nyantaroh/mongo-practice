@@ -1,0 +1,11 @@
+{
+  "name": "mongo-practice",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "mongodb": "^6.16.0"
+  },
+  "volta": {
+    "node": "22.15.1"
+  }
+}
