@@ -9,6 +9,9 @@ async function main() {
   const db = client.db("sampleDB");
   const collection = db.collection("fruits");
 
+  // データの初期化（練習するために毎回データをクリアしている。普通はおこなわない処理）
+  await collection.deleteMany();
+
   // データを複数件挿入（Create）
   await collection.insertMany([
     { name: "Apple", color: "Red", sweetness: 7 },
@@ -16,18 +19,23 @@ async function main() {
     { name: "Grape", color: "Purple", sweetness: 6 },
   ]);
 
-  // データを全件取得（Read）
-  const allFruits = await collection.find().toArray();
-  console.log("登録済みフルーツ一覧", allFruits);
-
   // データの更新（Update）
   await collection.updateOne({ name: "Banana" }, { $set: { sweetness: 10 } });
 
-  // データの削除（Delete）
-  await collection.deleteOne({ name: "Grape" });
-
-  const updatedResults = await collection.find().toArray();
-  console.log("データ削除まで進んだ時のフルーツ一覧", updatedResults);
+  // データを全件取得（Read）
+  const results = await collection
+    .find({
+      $and: [
+        {
+          sweetness: { $gte: 7 },
+        },
+        {
+          $or: [{ color: "Red" }, { color: "Yellow" }],
+        },
+      ],
+    })
+    .toArray();
+  console.log("検索内容に一致したフルーツ一覧", results);
 
   await client.close();
 }
